@@ -1,20 +1,20 @@
 <script>
-import HelloWorld from './components/HelloWorld.svelte'
-import logo from './assets/logo.png';
+
+import { Router, Route } from "svelte-routing";
+  import Create from "./components/Employee-Create/Employee-Create.svelte";
+  import Update from "./components/Employee-Update/Employee-Update.svelte";
+  import SingleView from "./components/Employee-Single-View/Employee-Single-View.svelte";
+  import View from "./components/Employee-View/Employee-View.svelte";
+
+  export let url = "";
 </script>
 
-<div id="app">
-  <img alt="Svelte logo" src={logo}>
-  <HelloWorld message="Svelte"/>
-</div>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<Router {url}>
+	<div>
+		<Route path="create-employee/" component={Create} />
+		<Route path="update-employee/:id" component={Update} />
+		<Route path="view-employee/:id" component={SingleView} />
+		<Route path="employees/" component={View} />
+		<Route path="/" component={View} />
+	</div>
+</Router>
